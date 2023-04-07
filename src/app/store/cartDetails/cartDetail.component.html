@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col mt-2">
+        <h2 class="text-center text-white">Your Cart</h2>
+        <table class="table table-bordered table-striped border-white border-[#fff8] border-2 p-2">
+            <thead class="border-2 border-[#fff8]">
+                <tr>
+                    <th class="text-white">Quantity</th>
+                    <th class="text-white">Product</th>
+                    <th class="text-end text-white">Price</th>
+                    <th class="text-end text-white">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody class="border-2 border-[#fff8]">
+                <tr *ngIf="cart.lines.length == 0">
+                    <td colspan="4" class="text-center text-white">
+                        Your cart is empty
+                    </td>
+                </tr>
+                <tr *ngFor="let line of cart.lines">
+                    <td>
+                        <input type="number" class="form-control-sm" style="width:5em" [value]="line.quantity" (change)="cart.updateQuantity(line.product,
+ $any($event).target.value)" />
+                    </td>
+
+                    <td class="text-white">{{line.product.name}}</td>
+                    <td class="text-end text-white">
+                        {{line.product.price | currency:"USD":"symbol":"2.2-2"}}
+                    </td>
+                    <td class="text-end text-white">
+                        {{(line.lineTotal) | currency:"USD":"symbol":"2.2-2" }}
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-danger" (click)="cart.removeLine(line.product.id ?? 0)">
+                            Remove
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-end text-white">Total:</td>
+                    <td class="text-end text-white">
+                        {{cart.cartPrice | currency:"USD":"symbol":"2.2-2"}}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="text-center">
+            <button class="btn btn-primary m-1 text-white" routerLink="/store">
+                Continue Shopping
+            </button>
+            <button class="btn btn-secondary m-1 text-white" routerLink="/checkout" [disabled]="cart.lines.length == 0">
+                Checkout
+            </button>
+        </div>
+    </div>
+</div>
