@@ -9,6 +9,7 @@ import { CheckoutComponent } from './store/checkout/checkout.component';
 import { pageNotFound } from './error/404.component';
 import { Home } from './home/home.component';
 import { Navbar } from './navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent, Navbar],
   imports: [
@@ -21,8 +22,14 @@ import { Navbar } from './navbar/navbar.component';
       { path: 'cart', component: CartDetailComponent },
       { path: 'checkout', component: CheckoutComponent },
       { path: 'pageNotFound', component: pageNotFound },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('./admin/admin.module').then((comp) => comp.AdminModule),
+      },
       { path: '**', redirectTo: '/pageNotFound' },
     ]),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
