@@ -1,4 +1,4 @@
-import { RestDataSource } from './../../model/rest.datasource';
+import { RestDataSource } from '../rest.datasource';
 import { Injectable } from '@angular/core';
 import { Product } from '../../model/product.model';
 //import { StaticDataSource } from "./static.datasource";
@@ -32,7 +32,7 @@ export class ProductRepository {
         .saveProduct(product)
         .subscribe((p) => this.products.push(p));
     } else {
-      this.dataSource.updateProduct(product).subscribe((p) => {
+      this.dataSource.updateProduct(product).subscribe(() => {
         this.products.splice(
           this.products.findIndex((p) => p.id == product.id),
           1,

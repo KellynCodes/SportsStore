@@ -1,4 +1,4 @@
-import { RestDataSource } from './../../model/rest.datasource';
+import { RestDataSource } from '../rest.datasource';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order } from '../../model/order.model';

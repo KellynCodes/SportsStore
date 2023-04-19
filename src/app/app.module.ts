@@ -10,25 +10,13 @@ import { pageNotFound } from './error/404.component';
 import { Home } from './home/home.component';
 import { Navbar } from './navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouteConfiguration } from 'src/Router/rootRoute';
 @NgModule({
   declarations: [AppComponent, Navbar],
   imports: [
     BrowserModule,
     StoreModule,
-    RouterModule.forRoot([
-      { path: '', component: Home },
-      { path: 'home', component: Home },
-      { path: 'store', component: StoreComponent },
-      { path: 'cart', component: CartDetailComponent },
-      { path: 'checkout', component: CheckoutComponent },
-      { path: 'pageNotFound', component: pageNotFound },
-      {
-        path: 'admin',
-        loadChildren: () =>
-          import('./admin/admin.module').then((comp) => comp.AdminModule),
-      },
-      { path: '**', redirectTo: '/pageNotFound' },
-    ]),
+    RouteConfiguration,
     BrowserAnimationsModule,
   ],
   providers: [],

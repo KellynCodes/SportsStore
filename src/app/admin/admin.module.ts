@@ -1,4 +1,4 @@
-import { OrderTableComponent } from './product/orderTable.component';
+import { OrderTableComponent } from './order/orderTable.component';
 import { ProductTableComponent } from './product/productTable.component';
 import { MaterialFeatures } from './design/material.module';
 import { NgModule } from '@angular/core';
@@ -17,10 +17,10 @@ let routing = RouterModule.forChild([
     component: AdminComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'products/:mode/:id', component: ProductEditorComponent },
-      { path: 'products/:mode', component: ProductEditorComponent },
       { path: 'products', component: ProductTableComponent },
       { path: 'orders', component: OrderTableComponent },
+      { path: 'products/:mode/:id', component: ProductEditorComponent },
+      { path: 'products/:mode', component: ProductEditorComponent },
       { path: '**', redirectTo: 'products' },
     ],
   },
@@ -36,6 +36,6 @@ let routing = RouterModule.forChild([
     ProductEditorComponent,
     OrderTableComponent,
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, ProductEditorComponent],
 })
 export class AdminModule {}
